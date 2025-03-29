@@ -68,7 +68,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 sh '''
-                    terraform init -backend-config="key=env/${TF_ENV}/terraform.tfstate"
+                    terraform init -reconfigure -backend-config="key=env/${TF_ENV}/terraform.tfstate"
                 '''
             }
         }
@@ -92,16 +92,4 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo "✅ Terraform deployment for ${params.ENV} successful!"
-            // slackSend channel: '#your-channel', message: "✅ Deployment succeeded for *${params.ENV}*."
-        }
-        failure {
-            echo "❌ Terraform deployment failed!"
-            // mail to: 'you@example.com',
-            //      subject: "Terraform Job Failed: ${env.JOB_NAME}",
-            //      body: "Check Jenkins for details."
-        }
-    }
 }
