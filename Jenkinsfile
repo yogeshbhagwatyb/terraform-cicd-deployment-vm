@@ -75,7 +75,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan -var="environment=${TF_ENV}" -var-file=terraform.tfvars'
+                sh 'terraform plan -var="environment=${TF_ENV}"'
             }
         }
 
@@ -83,9 +83,9 @@ pipeline {
             steps {
                 script {
                     if (params.DESTROY_INFRA) {
-                        sh 'terraform destroy -auto-approve -var="environment=${TF_ENV}" -var-file=terraform.tfvars'
+                        sh 'terraform destroy -auto-approve -var="environment=${TF_ENV}"'
                     } else {
-                        sh 'terraform apply -auto-approve -var="environment=${TF_ENV}" -var-file=terraform.tfvars'
+                        sh 'terraform apply -auto-approve -var="environment=${TF_ENV}"'
                     }
                 }
             }
