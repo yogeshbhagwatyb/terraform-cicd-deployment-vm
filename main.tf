@@ -6,6 +6,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket  = "ezdevops-v2-terraform-us-east-1"
+    key     = "terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
+}
+
+
 resource "aws_instance" "example" {
   ami           = "ami-095a8f574cb0ac0d0" # Ubuntu AMI
   instance_type = "t3.medium"
