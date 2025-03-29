@@ -3,8 +3,7 @@
 # }
 
 provider "aws" {
-  region  = "us-east-1"
-  profile = "default"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "example" {
@@ -24,8 +23,6 @@ resource "aws_instance" "example" {
   }
 
 }
-
-
 
 output "ec2_public_ip" {
   description = "Public IP of the EC2 instance"
