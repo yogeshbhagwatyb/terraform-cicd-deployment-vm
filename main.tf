@@ -24,29 +24,3 @@ resource "aws_instance" "example" {
 
 }
 
-output "ec2_public_ip" {
-  description = "Public IP of the EC2 instance"
-  value       = aws_instance.example.public_ip
-}
-
-output "ec2_private_ip" {
-  description = "Private IP of the EC2 instance"
-  value       = aws_instance.example.private_ip
-}
-
-
-output "instance_tags" {
-  value = aws_instance.example.tags
-}
-
-output "subnet_cidr_blocks" {
-  value = [for s in aws_subnet.example_subnet : s.cidr_block]
-}
-
-locals {
-  example_string = "hello, world!"
-}
-
-output "uppercase_string" {
-  value = upper(local.example_string)
-}
